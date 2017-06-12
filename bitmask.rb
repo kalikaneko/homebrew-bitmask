@@ -7,7 +7,7 @@ class Bitmask < Formula
   bottle :unneeded
 
   def install
-    bin.install "delta"
+    bin.install "bitmask-0.10.0"
   end
 
   test do
