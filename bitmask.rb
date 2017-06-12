@@ -13,6 +13,19 @@ class Bitmask < Formula
     prefix.install Dir["*"]
   end
 
+  def post_install
+    system "echo 'cd /usr/local/Cellar/bitmask/0.10a1 && ./bitmask' > /usr/local/bin/bitmask"
+    system "chmod +x /usr/local/bin/bitmask"
+    # XXX let's copy helpers!
+    #quiet_system ""
+  end
+
+  def caveats; <<-EOS.undent
+    This is a precompiled version of Bitmask for testing purposes, and NOT the recommended installation mechanism.
+    See https://bitmask.readthedocs.io/
+    EOS
+  end
+
   test do
     #system "#{bin}/bitmask", "--version"
     system "true"
