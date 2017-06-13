@@ -18,11 +18,11 @@ class Bitmask < Formula
     system "cp #{prefix}/apps/helpers/bitmask-helper /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
     system "cp #{prefix}/apps/helpers/bitmask.pf.conf /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
     system "cp -r #{prefix}/apps/helpers/daemon /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
-    system "cp -r #{prefix}/apps/helpers/se.leap.bitmask-helper.plist /Library/LaunchDaemons/"
+    system "sudo cp -r #{prefix}/apps/helpers/se.leap.bitmask-helper.plist /Library/LaunchDaemons/"
   end
 
   def post_install
-    system "launchctl" "load" "/Library/LaunchDaemons/se.bitmask-helper.plist"
+    system "sudo" "launchctl" "load" "/Library/LaunchDaemons/se.bitmask-helper.plist"
   end
 
   def caveats; <<-EOS.undent
