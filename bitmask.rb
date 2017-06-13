@@ -3,7 +3,7 @@ class Bitmask < Formula
   homepage "https://0xacab.org/leap/bitmask-dev"
   url "https://downloads.leap.se/client/osx/internal/bitmask-0.10a1.tar.gz"
   version "0.10a1"
-  sha256 "c1e987ec1431a6418c8a9c90e1410b871066915a12a8979c3fa1b71e4876fa15"
+  sha256 "d06f753984c224aac3396386c1494bfd5795c3145e9099519e4994b3af5947f2"
 
   depends_on "openvpn" => :run
 
