@@ -17,10 +17,10 @@ class Bitmask < Formula
     system "echo 'cd /usr/local/Cellar/bitmask/0.10a1 && ./bitmask' > /usr/local/bin/bitmask"
     system "chmod +x /usr/local/bin/bitmask"
     system "mkdir -p /Applications/Bitmask.app/Contents/Resources/bitmask-helper"
-    system "cp apps/helpers/openvpn/* /Applications/Bitmask.app/Contents/Resources/"
-    system "cp apps/helpers/bitmask-helper /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
-    system "cp apps/helpers/bitmask.pf.conf /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
-    system "cp -r apps/helpers/daemon /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
+    system "cp #{prefix}/apps/helpers/openvpn/* /Applications/Bitmask.app/Contents/Resources/"
+    system "cp #{prefix}/apps/helpers/bitmask-helper /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
+    system "cp #{prefix}/apps/helpers/bitmask.pf.conf /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
+    system "cp -r #{prefix}/apps/helpers/daemon /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
   end
 
   def plist; <<-EOS.undent
