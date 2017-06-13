@@ -22,7 +22,7 @@ class Bitmask < Formula
   end
 
   def post_install
-    system "sudo" "launchctl" "load" "/Library/LaunchDaemons/se.bitmask-helper.plist"
+    system "sudo launchctl load /Library/LaunchDaemons/se.bitmask-helper.plist"
   end
 
   def caveats; <<-EOS.undent
