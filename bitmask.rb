@@ -11,9 +11,6 @@ class Bitmask < Formula
 
   def install
     prefix.install Dir["*"]
-  end
-
-  def post_install
     system "echo 'cd /usr/local/Cellar/bitmask/0.10a1 && ./bitmask' > /usr/local/bin/bitmask"
     system "chmod +x /usr/local/bin/bitmask"
     system "mkdir -p /Applications/Bitmask.app/Contents/Resources/bitmask-helper"
@@ -21,44 +18,15 @@ class Bitmask < Formula
     system "cp #{prefix}/apps/helpers/bitmask-helper /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
     system "cp #{prefix}/apps/helpers/bitmask.pf.conf /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
     system "cp -r #{prefix}/apps/helpers/daemon /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
+    system "cp -r #{prefix}/apps/helpers/se.leap.bitmask-helper.plist /Library/LaunchDaemons/"
   end
 
-  def plist; <<-EOS.undent
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-      <key>StandardOutPath</key>
-      <string>bitmask-helper.log</string>
-      <key>StandardErrorPath</key>
-      <string>bitmask-helper-err.log</string>
-      <key>GroupName</key>
-      <string>daemon</string>
-      <key>KeepAlive</key>
-      <dict>
-	<key>SuccessfulExit</key>
-	<false/>
-       </dict>
-       <key>Label</key>
-       <string>se.leap.bitmask-helper</string>
-       <key>ProgramArguments</key>
-       <array>
-         <string>/Applications/Bitmask.app/Contents/Resources/bitmask-helper/bitmask-helper</string>
-       </array>
-       <key>RunAtLoad</key>
-       <true/>
-       <key>WorkingDirectory</key>
-       <string>/Applications/Bitmask.app/Contents/Resources/bitmask-helper/</string>
-       <key>SessionCreate</key>
-       <true/>
-     </dict>
-     </plist>
-     EOS
+  def post_install
+    system "launchctl" "load" "/Library/LaunchDaemons/se.bitmask-helper.plist"
   end
 
   def caveats; <<-EOS.undent
-    This is a precompiled version of Bitmask for testing purposes, and NOT the recommended installation mechanism.
-    See https://bitmask.readthedocs.io/
+    This is a precompiled version of Bitmask for testing purposes, and NOT the recommended installation mechanism. See https://bitmask.readthedocs.io/ for moar info :)
     EOS
   end
 
