@@ -1,11 +1,12 @@
 class Bitmask < Formula
   desc "Your Internet Encryption Toolkit: VPN and Encrypted Email"
   homepage "https://0xacab.org/leap/bitmask-dev"
-  url "https://downloads.leap.se/client/osx/internal/bitmask-0.10a1.tar.gz"
-  version "0.10a1"
-  sha256 "d06f753984c224aac3396386c1494bfd5795c3145e9099519e4994b3af5947f2"
+  url "https://downloads.leap.se/client/osx/internal/bitmask-0.10a1p1.tar.gz"
+  version "0.10a1p1"
+  sha256 "6b6623da018fd3a5e842ceb92c7fba60e3454cdaa3a1b92e2c0734ff9d8e04d8"
 
   depends_on "openvpn" => :run
+  depends_on "gpg" => :run
 
   bottle :unneeded
 
