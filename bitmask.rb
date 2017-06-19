@@ -1,8 +1,10 @@
 class Bitmask < Formula
   desc "Your Internet Encryption Toolkit: VPN and Encrypted Email"
   homepage "https://0xacab.org/leap/bitmask-dev"
-  url "https://downloads.leap.se/client/osx/internal/bitmask-0.10a1p1.tar.gz"
+
+  # CHANGE VERSION IN THE BIN TOO
   version "0.10a1p1"
+  url "https://downloads.leap.se/client/osx/internal/bitmask-0.10a1p1.tar.gz"
   sha256 "6b6623da018fd3a5e842ceb92c7fba60e3454cdaa3a1b92e2c0734ff9d8e04d8"
 
   depends_on "openvpn" => :run
@@ -12,7 +14,7 @@ class Bitmask < Formula
 
   def install
     prefix.install Dir["*"]
-    system "echo 'cd /usr/local/Cellar/bitmask/0.10a1 && ./bitmask' > /usr/local/bin/bitmask"
+    system "echo 'cd /usr/local/Cellar/bitmask/0.10a1p1 && ./bitmask' > /usr/local/bin/bitmask"
     system "chmod +x /usr/local/bin/bitmask"
     system "mkdir -p /Applications/Bitmask.app/Contents/Resources/bitmask-helper"
     system "cp #{prefix}/apps/helpers/openvpn/* /Applications/Bitmask.app/Contents/Resources/"
