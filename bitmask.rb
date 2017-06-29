@@ -16,16 +16,16 @@ class Bitmask < Formula
     system "echo 'cd /usr/local/Cellar/bitmask/" + version + " && ./bitmask' > /usr/local/bin/bitmask"
     system "chmod +x /usr/local/bin/bitmask"
     system "mkdir -p /Applications/Bitmask.app/Contents/Resources/bitmask-helper"
+  end
+
+  def post_install
     system "cp #{prefix}/apps/helpers/openvpn/* /Applications/Bitmask.app/Contents/Resources/"
     system "cp #{prefix}/apps/helpers/bitmask-helper /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
     system "cp #{prefix}/apps/helpers/bitmask.pf.conf /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
     system "cp -r #{prefix}/apps/helpers/daemon/daemon.py /Applications/Bitmask.app/Contents/Resources/bitmask-helper/"
     system "sudo cp -r #{prefix}/apps/helpers/se.leap.bitmask-helper.plist /Library/LaunchDaemons/"
-  end
-
-  def post_install
-    # XXX try to unload first
-    system "sudo launchctl load /Library/LaunchDaemons/se.leap.bitmask-helper.plist"
+    system "sudo launchctl unload /Library/LaunchDaemons/se.leap.bitmask-helper.plist" || true
+    system "sudo launchctl load /Library/LaunchDaemons/se.leap.bitmask-helper.plist" || true
   end
 
   def caveats; <<-EOS.undent
